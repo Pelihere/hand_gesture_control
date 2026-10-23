@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gesture-desktop-control"
+version = "0.2.0"
+description = "Local-first Windows hand-gesture desktop controller"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = {text = "MIT"}
+dependencies = [
+  # This app uses the legacy `mp.solutions.hands` API, which mediapipe 0.10.21 provides. Newer releases
+  # (e.g. 0.10.32) no longer expose it and fail with "module 'mediapipe' has no attribute 'solutions'".
+  # mediapipe 0.10.21 also requires numpy<2.
+  "numpy>=1.26,<2",
+  "opencv-python>=4.10,<4.12",
+  "mediapipe==0.10.21",
+  "PySide6>=6.8,<6.10",
+  "pyautogui>=0.9.54,<0.10",
+  "pynput>=1.7.7,<1.9",
+]
+
+[project.optional-dependencies]
+windows = ["pycaw>=20240210", "comtypes>=1.4.8"]
+dev = ["pytest>=8.0,<9", "pytest-cov>=5.0,<7"]
+build = ["pyinstaller>=6.10,<7"]
+
+[project.scripts]
+gesture-control = "gesture_control.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
