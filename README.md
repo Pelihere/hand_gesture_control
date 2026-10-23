@@ -86,6 +86,3 @@ The app uses the legacy `mp.solutions.hands` API. `mediapipe==0.10.21` on Python
 - Gestures recognized but nothing happens: see "Why recognized but nothing happens" above, then run the self-test buttons.
 - Global hotkeys do not work: check conflicts and inspect `%LOCALAPPDATA%\GestureDesktopControl\logs\application.log`.
 - Volume controls unavailable: check the default audio endpoint and `pycaw` dependency installation.
-
-## Claude Code handoff
-Read `docs/CLAUDE_CODE_HANDOFF_PROMPT.md` and paste it into Claude Code with this project folder open. Preserve the portable-build architecture unless a concrete tested issue requires changing it.
